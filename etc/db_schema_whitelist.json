@@ -1,0 +1,16 @@
+{
+    "bpfnet_product_pictos": {
+        "column": {
+            "item_id": true,
+            "item_code": true,
+            "item_label": true,
+            "image": true
+        },
+        "index": {
+            "BPFNET_PRODUCT_PICTOS_ITEM_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

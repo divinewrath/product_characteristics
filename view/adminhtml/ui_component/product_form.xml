@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">product_form.product_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Pictos</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <dataSource name="product_form_data_source">
+        <dataProvider class="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider" name="product_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="pictos" sortOrder="100">
+        <settings>
+            <label translate="true">Pictos</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <dataScope>data.pictos</dataScope>
+        </settings>
+        <dynamicRows
+            name="assigned_pictos"
+            component="Bpfnet_ProductPictos/js/dynamic-rows/dynamic-rows"
+            template="Bpfnet_ProductPictos/dynamic-rows/templates/default"
+            sortOrder="20"
+        >
+            <settings>
+                <label translate="true">Pictos</label>
+                <defaultRecord>false</defaultRecord>
+                <addButton>true</addButton>
+                <deleteProperty>true</deleteProperty>
+                <recordTemplate>record</recordTemplate>
+                <identificationProperty>record_id</identificationProperty>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">true</param>
+                    <param name="template" xsi:type="string">ui/dynamic-rows/cells/dnd</param>
+                </dndConfig>
+                <columnsHeader>true</columnsHeader>
+                <imports>
+                    <link name="disabled">${ $.provider}:pictos_use_default</link>
+                </imports>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="dataScope" xsi:type="string"/>
+                    </item>
+                </argument>
+                <field name="pictogram_select" formElement="select" sortOrder="20">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">value</item>
+                            <item name="prefixElementName" xsi:type="string">option_</item>
+                            <item name="dataScope" xsi:type="string">value</item>
+                            <item name="fit" xsi:type="boolean">false</item>
+                            <item name="label" xsi:type="string">Pictogram</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <imports>
+                            <link name="disabled">${ $.provider}:pictos_use_default</link>
+                        </imports>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="\Bpfnet\ProductPictos\Model\Attribute\Source\PictosSource" />
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="position" formElement="input" sortOrder="40">
+                    <settings>
+                        <elementTmpl>ui/form/element/input</elementTmpl>
+                        <dataType>number</dataType>
+                        <dataScope>position</dataScope>
+                        <label translate="true">Position</label>
+                        <visible>false</visible>
+                    </settings>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="data-grid-actions-cell">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

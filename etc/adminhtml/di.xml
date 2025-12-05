@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="pictos" xsi:type="array">
+                    <item name="class" xsi:type="string">Bpfnet\ProductPictos\Ui\DataProvider\Product\Form\Modifier\Pictos</item>
+                    <item name="sortOrder" xsi:type="number">999</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="BpfnetProductPictosImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">\Bpfnet\ProductPictos\Config\Constants::PICTOS_TMP_MEDIA_PATH</argument>
+            <argument name="basePath" xsi:type="const">\Bpfnet\ProductPictos\Config\Constants::PICTOS_MEDIA_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Bpfnet\ProductPictos\Controller\Adminhtml\Form\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BpfnetProductPictosImageUpload</argument>
+        </arguments>
+    </type>
+    <type name="Bpfnet\ProductPictos\Controller\Adminhtml\Form\Save">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BpfnetProductPictosImageUpload</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,27 @@
+{
+    "name": "bpfnet/product_pictos",
+    "version": "0.0.1",
+    "type": "magento2-module",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "magento/framework": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "authors": [
+        {
+            "name": "Łukasz Wojciechowski",
+            "email": "divine.wrath1@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Bpfnet\\ProductPictos\\": ""
+        }
+    }
+}

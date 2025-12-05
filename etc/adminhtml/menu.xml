@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bpfnet_ProductPictos::home" title="Bpfnet" module="Bpfnet_ProductPictos" resource="Bpfnet_ProductPictos::home" sortOrder="1000"/>
+        <add id="Bpfnet_ProductPictos::pictos_listing" title="Pictos" action="pictos/grid/index" module="Bpfnet_ProductPictos" sortOrder="1000" parent="Bpfnet_ProductPictos::home" resource="Bpfnet_ProductPictos::pictos_listing" />
+    </menu>
+</config>
