@@ -84,4 +84,16 @@ class PictoRepository
 
         return true;
     }
+
+    public function deleteById(int $pictoId): bool
+    {
+        try {
+            $picto = $this->get($pictoId);
+            $this->pictoResource->delete($picto);
+        } catch (Exception $exception) {
+            throw new CouldNotDeleteException(__($exception->getMessage()));
+        }
+
+        return true;
+    }
 }
