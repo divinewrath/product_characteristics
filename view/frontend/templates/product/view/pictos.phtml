@@ -1,0 +1,20 @@
+<?php
+/** @var $block \Magento\Catalog\Block\Product\View */
+/** @var $escaper \Magento\Framework\Escaper */
+
+/** @var \Bpfnet\ProductPictos\ViewModel\Pictos $viewModel */
+$viewModel = $block->getData('view_model');
+$product = $block->getProduct();
+$pictos = $viewModel->getPictos($product);
+?>
+
+<?php if ($product && is_array($pictos) && count($pictos) > 0): ?>
+    <?php /** @var \Bpfnet\ProductPictos\Model\Picto $picto */
+    foreach ($pictos as $picto): ?>
+        <img
+            src="<?=$viewModel->getPictoImageUrl($picto) ?>"
+            alt="<?= $picto->getData('item_label')?>"
+            title="<?= $picto->getData('item_label')?>"
+        />
+    <?php endforeach ?>
+<?php endif ?>
